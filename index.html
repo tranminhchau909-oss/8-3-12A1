@@ -3,135 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy 8/3</title>
+<title>SUPER CINEMA 12A1</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
 height:100vh;
-background: radial-gradient(circle at center, #1a1a1a, #000);
+background:radial-gradient(circle at center,#0a0a0a,#000);
 overflow:hidden;
-font-family:'Playfair Display',serif;
 display:flex;
 justify-content:center;
 align-items:center;
+font-family:'Playfair Display',serif;
 color:#fff;
+animation:cameraZoom 8s ease forwards;
 }
 
-/* GOLD GLOW */
-.gold-text{
-background: linear-gradient(45deg,#f6d365,#fda085,#fbc2eb,#f6d365);
--webkit-background-clip:text;
-color:transparent;
-background-size:300% 300%;
-animation: goldFlow 5s ease infinite;
+@keyframes cameraZoom{
+0%{transform:scale(0.85);}
+100%{transform:scale(1);}
 }
 
-@keyframes goldFlow{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
-
-/* CARD CONTAINER */
-.card-container{
-perspective:2000px;
-}
-
-.card{
-width:500px;
-height:600px;
-position:relative;
-transform-style:preserve-3d;
-transition:1.5s;
-cursor:pointer;
-}
-
-.card.open{
-transform:rotateY(180deg);
-}
-
-.front,.inside{
-position:absolute;
+/* NETFLIX INTRO */
+.intro{
+position:fixed;
 width:100%;
 height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:35px;
+letter-spacing:5px;
+animation:introFade 5s forwards;
+z-index:20;
+}
+@keyframes introFade{
+0%{opacity:1;}
+85%{opacity:1;}
+100%{opacity:0;visibility:hidden;}
+}
+
+/* CARD */
+.container{perspective:3000px;}
+.card{
+width:700px;height:760px;
+position:relative;
+transform-style:preserve-3d;
+transition:2s cubic-bezier(.19,1,.22,1);
+cursor:pointer;
+}
+.card.open{transform:rotateY(180deg);}
+.side{
+position:absolute;
+width:100%;height:100%;
 backface-visibility:hidden;
-border-radius:20px;
-box-shadow:0 0 50px rgba(255,215,0,0.5);
+border-radius:35px;
+border:3px solid gold;
+box-shadow:0 0 100px rgba(255,215,0,0.8);
 overflow:hidden;
-}
-
-.front{
-background:linear-gradient(135deg,#111,#1f1f1f);
 display:flex;
-justify-content:center;
-align-items:center;
 flex-direction:column;
-border:2px solid gold;
-}
-
-.front h1{
-font-family:'Great Vibes',cursive;
-font-size:60px;
-}
-
-.front p{
-margin-top:20px;
-font-size:18px;
-letter-spacing:2px;
-}
-
-.inside{
-background:linear-gradient(135deg,#000,#222);
-transform:rotateY(180deg);
-display:flex;
-justify-content:center;
 align-items:center;
-text-align:center;
-padding:40px;
-border:2px solid gold;
+justify-content:center;
+padding:50px;
+background:linear-gradient(145deg,#111,#1b1b1b);
+}
+.back{transform:rotateY(180deg);overflow-y:auto;}
+
+h1{
+font-family:'Great Vibes',cursive;
+font-size:75px;
+margin-bottom:20px;
+background:linear-gradient(90deg,#ffd700,#fff5b1,#ffd700);
+background-size:200%;
+-webkit-background-clip:text;
+color:transparent;
+animation:goldMove 5s linear infinite;
 }
 
-.inside h2{
-font-size:28px;
-line-height:1.8;
+@keyframes goldMove{
+0%{background-position:0%;}
+100%{background-position:200%;}
 }
 
-/* FLOATING 3D FLOWERS */
-.flower{
+/* TEXT ANIMATION */
+.line{
+opacity:0;
+transform:translateY(20px);
+animation:fadeUp 1.5s forwards;
+}
+.line:nth-child(1){animation-delay:1s;}
+.line:nth-child(2){animation-delay:2s;}
+.line:nth-child(3){animation-delay:3s;}
+.line:nth-child(4){animation-delay:4s;}
+.line:nth-child(5){animation-delay:5s;}
+.line:nth-child(6){animation-delay:6s;}
+.line:nth-child(7){animation-delay:7s;}
+
+@keyframes fadeUp{
+to{opacity:1;transform:translateY(0);}
+}
+
+/* ROSES */
+.rose{
 position:absolute;
 font-size:28px;
-animation:floatFlower linear infinite;
-filter:drop-shadow(0 0 10px pink);
+animation:floatRose linear infinite;
 }
-
-@keyframes floatFlower{
+@keyframes floatRose{
 0%{transform:translateY(100vh) rotate(0deg);}
 100%{transform:translateY(-10vh) rotate(360deg);}
+}
+
+/* DUST PARTICLES */
+.dust{
+position:absolute;
+width:3px;height:3px;
+background:gold;
+border-radius:50%;
+opacity:0.6;
+animation:dustMove linear infinite;
+}
+@keyframes dustMove{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
 }
 
 /* FIREWORK CANVAS */
 canvas{
 position:fixed;
-top:0;
-left:0;
+top:0;left:0;
 pointer-events:none;
 }
 
-/* VIGNETTE EFFECT */
 body::after{
 content:'';
 position:absolute;
 width:100%;
 height:100%;
-background:radial-gradient(circle,transparent 60%,rgba(0,0,0,0.8));
+background:radial-gradient(circle,transparent 60%,rgba(0,0,0,0.9));
 pointer-events:none;
 }
 </style>
@@ -139,46 +152,70 @@ pointer-events:none;
 
 <body>
 
+<div class="intro">
+✨ 12A1 CINEMA PRODUCTION ✨
+</div>
+
 <canvas id="fireworks"></canvas>
 
-<div class="card-container">
+<div class="container">
 <div class="card" onclick="openCard()">
-<div class="front">
-<h1 class="gold-text">Happy 8/3</h1>
-<p>Nhấn để mở thiệp</p>
+
+<div class="side">
+<h1>Happy 8/3</h1>
+<p>Nhấn để mở thiệp ✨</p>
 </div>
-<div class="inside">
-<h2 class="gold-text">
-Chúc các chị em<br>
-luôn xinh đẹp, hạnh phúc<br>
-và rực rỡ như pháo hoa ✨
-</h2>
+
+<div class="side back">
+<h1>12A1</h1>
+
+<div class="line">🌷 Lời chúc 8/3 gửi đến những bông hoa rực rỡ của 12A1 🌷</div>
+<div class="line">Cảm ơn các bạn đã làm thanh xuân này dịu dàng và đầy màu sắc.</div>
+<div class="line">Tuổi 18 có áp lực, nhưng cũng thật đặc biệt.</div>
+<div class="line">Mong các bạn luôn tự tin và tin vào chính mình.</div>
+<div class="line">Chúc các bạn rực rỡ ở trí tuệ và ấm áp trong trái tim.</div>
+<div class="line">Sau này nhìn lại 12A1, chúng ta sẽ mỉm cười.</div>
+<div class="line">💖 Chúc mọi ước mơ đều thành hiện thực. 💖</div>
+
 </div>
 </div>
 </div>
 
-<audio id="music" autoplay loop>
+<audio id="bgm" autoplay loop>
 <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6b6f1f6db3.mp3">
+</audio>
+
+<audio id="openSound">
+<source src="https://cdn.pixabay.com/audio/2021/08/04/audio_0625c6d8c7.mp3">
 </audio>
 
 <script>
 function openCard(){
 document.querySelector('.card').classList.toggle('open');
+document.getElementById('openSound').play();
 launchFireworks();
 }
 
-/* FLOWERS */
-for(let i=0;i<40;i++){
-let flower=document.createElement("div");
-flower.className="flower";
-flower.innerHTML="🌸";
-flower.style.left=Math.random()*100+"vw";
-flower.style.animationDuration=(5+Math.random()*5)+"s";
-flower.style.fontSize=(20+Math.random()*20)+"px";
-document.body.appendChild(flower);
+/* ROSES */
+for(let i=0;i<35;i++){
+let rose=document.createElement("div");
+rose.className="rose";
+rose.innerHTML="🌹";
+rose.style.left=Math.random()*100+"vw";
+rose.style.animationDuration=(6+Math.random()*5)+"s";
+document.body.appendChild(rose);
 }
 
-/* FIREWORKS SYSTEM */
+/* DUST */
+for(let i=0;i<80;i++){
+let dust=document.createElement("div");
+dust.className="dust";
+dust.style.left=Math.random()*100+"vw";
+dust.style.animationDuration=(8+Math.random()*6)+"s";
+document.body.appendChild(dust);
+}
+
+/* FIREWORKS */
 const canvas=document.getElementById("fireworks");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
@@ -187,23 +224,22 @@ canvas.height=window.innerHeight;
 let particles=[];
 
 function launchFireworks(){
-for(let i=0;i<10;i++){
-setTimeout(createExplosion,i*400);
+for(let i=0;i<15;i++){
+setTimeout(explode,i*300);
 }
 }
 
-function createExplosion(){
+function explode(){
 let x=Math.random()*canvas.width;
 let y=Math.random()*canvas.height/2;
-for(let i=0;i<80;i++){
+for(let i=0;i<150;i++){
 particles.push({
-x:x,
-y:y,
+x,y,
 radius:2,
 color:`hsl(${Math.random()*360},100%,60%)`,
 angle:Math.random()*2*Math.PI,
 speed:Math.random()*6+2,
-life:100
+life:120
 });
 }
 }
@@ -212,7 +248,6 @@ function animate(){
 requestAnimationFrame(animate);
 ctx.fillStyle="rgba(0,0,0,0.2)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
-
 particles.forEach((p,i)=>{
 p.x+=Math.cos(p.angle)*p.speed;
 p.y+=Math.sin(p.angle)*p.speed;
@@ -224,7 +259,6 @@ ctx.fill();
 if(p.life<=0)particles.splice(i,1);
 });
 }
-
 animate();
 </script>
 
