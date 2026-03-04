@@ -3,241 +3,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>12A1 Final Boss</title>
+<title>8/3 - 12A1</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-height:100vh;
-overflow:hidden;
-background:black;
-color:white;
-font-family:'Cinzel',serif;
+    height:100vh;
+    background:linear-gradient(135deg,#1a1a1a,#2a1f2f,#f7c5d9);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
+    transition:background 2s ease;
 }
 
-/* BACKGROUND */
-.bg{
-position:fixed;
-width:100%;
-height:100%;
-background:url("12a1.jpg") center/cover no-repeat;
-filter:blur(10px) brightness(0.4);
-animation:zoom 25s infinite alternate ease-in-out;
+/* Hạt sáng nhẹ */
+.sparkle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    opacity:.4;
+    animation:twinkle 3s infinite alternate;
+}
+@keyframes twinkle{
+    from{opacity:.1;}
+    to{opacity:.6;}
 }
 
-@keyframes zoom{
-0%{transform:scale(1.1);}
-100%{transform:scale(1.25);}
+/* PHONG THƯ */
+.envelope{
+    position:relative;
+    width:320px;
+    height:200px;
+    background:#f8d7e6;
+    border-radius:8px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    cursor:pointer;
+    transition:all 1.2s ease;
 }
 
-/* PARTICLES */
-.particle{
-position:fixed;
-width:4px;
-height:4px;
-background:white;
-border-radius:50%;
-opacity:0.7;
-animation:float 12s linear infinite;
+.flap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#f4bcd4;
+    clip-path:polygon(0 0,100% 0,50% 60%);
+    transform-origin:top;
+    transition:transform 1.2s ease;
+    border-radius:8px;
 }
 
-@keyframes float{
-from{transform:translateY(100vh);}
-to{transform:translateY(-10vh);}
+/* LÁ THƯ */
+.letter{
+    position:absolute;
+    width:90%;
+    height:260px;
+    background:#fffafc;
+    top:20px;
+    left:5%;
+    border-radius:8px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    transform:translateY(120px);
+    opacity:0;
+    transition:all 1.5s ease;
+    text-align:center;
 }
 
-/* CONTAINER */
-.container{
-position:absolute;
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-perspective:3000px;
+.letter img{
+    width:100%;
+    border-radius:6px;
+    margin-top:15px;
+    opacity:0;
+    transition:opacity 2s ease, transform 8s ease;
 }
 
-.card{
-width:700px;
-height:760px;
-transform-style:preserve-3d;
-transition:2.5s cubic-bezier(.19,1,.22,1);
-cursor:pointer;
+/* ánh sáng quét */
+.light-scan{
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+    transform:skewX(-20deg);
 }
 
-.card.open{
-transform:rotateY(180deg) scale(1.05);
+.message{
+    margin-top:10px;
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    line-height:1.6;
+    opacity:0;
+    transition:opacity 2s ease;
 }
 
-.side{
-position:absolute;
-width:100%;
-height:100%;
-backface-visibility:hidden;
-border-radius:40px;
-background:rgba(0,0,0,0.85);
-border:3px solid gold;
-box-shadow:0 0 120px rgba(255,215,0,0.8);
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-padding:40px;
+/* Cánh hoa */
+.petal{
+    position:absolute;
+    width:15px;
+    height:15px;
+    background:pink;
+    border-radius:50% 50% 50% 0;
+    opacity:.5;
+    animation:fall linear infinite;
 }
 
-/* FRONT LOGO */
-.logo{
-font-size:90px;
-font-family:'Cinzel',serif;
-background:linear-gradient(90deg,#ffd700,#fff,#ffd700);
-background-size:200%;
--webkit-background-clip:text;
-color:transparent;
-animation:shine 3s linear infinite;
+@keyframes fall{
+    0%{transform:translateY(-50px) rotate(0deg);}
+    100%{transform:translateY(110vh) rotate(360deg);}
 }
 
-@keyframes shine{
-0%{background-position:0%;}
-100%{background-position:200%;}
+/* Khi mở */
+.open .flap{
+    transform:rotateX(180deg);
 }
-
-/* BACK */
-.back{
-transform:rotateY(180deg);
-overflow-y:auto;
+.open .letter{
+    transform:translateY(-100px);
+    opacity:1;
 }
-
-.title{
-font-family:'Great Vibes',cursive;
-font-size:70px;
-margin-bottom:30px;
-color:#ffd700;
+.open .letter img{
+    opacity:1;
+    transform:scale(1.08);
 }
-
-.line{
-opacity:0;
-transform:translateY(30px);
-animation:appear 1.5s forwards;
-}
-
-.line:nth-child(1){animation-delay:1s;}
-.line:nth-child(2){animation-delay:2.5s;}
-.line:nth-child(3){animation-delay:4s;}
-.line:nth-child(4){animation-delay:5.5s;}
-.line:nth-child(5){animation-delay:7s;}
-.line:nth-child(6){animation-delay:8.5s;}
-
-@keyframes appear{
-to{opacity:1;transform:translateY(0);}
-}
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-pointer-events:none;
+.open .message{
+    opacity:1;
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
-<canvas id="fire"></canvas>
-
-<!-- Floating light particles -->
+<!-- Hạt sáng -->
 <script>
-for(let i=0;i<60;i++){
-let p=document.createElement("div");
-p.className="particle";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=8+Math.random()*10+"s";
-document.body.appendChild(p);
+for(let i=0;i<30;i++){
+    let s=document.createElement("div");
+    s.className="sparkle";
+    s.style.top=Math.random()*100+"%";
+    s.style.left=Math.random()*100+"%";
+    s.style.animationDuration=(2+Math.random()*3)+"s";
+    document.body.appendChild(s);
 }
 </script>
 
-<div class="container">
-<div class="card" onclick="openCard()">
-
-<div class="side">
-<div class="logo">12A1</div>
-<p>Final Boss Edition 🎬</p>
-</div>
-
-<div class="side back">
-
-<div class="title">Happy 8/3 💐</div>
-
-<div class="line">🌷 Gửi những bông hoa tuyệt vời của 12A1 🌷</div>
-<div class="line">Cảm ơn vì đã cùng nhau đi qua tuổi 18 đầy thử thách.</div>
-<div class="line">Mỗi người là một ánh sáng riêng biệt.</div>
-<div class="line">Hãy luôn tin vào chính mình và ước mơ phía trước.</div>
-<div class="line">Thanh xuân này sẽ mãi là kỷ niệm đẹp nhất.</div>
-<div class="line">💖 12A1 Forever 💖</div>
-
-</div>
-</div>
-</div>
-
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6b6f1f6db3.mp3">
-</audio>
-
+<!-- Cánh hoa -->
 <script>
-function openCard(){
-document.querySelector('.card').classList.toggle('open');
-launch();
-}
-
-/* FIREWORK SYSTEM */
-const canvas=document.getElementById("fire");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let parts=[];
-
-function launch(){
 for(let i=0;i<15;i++){
-setTimeout(explode,i*300);
+    let p=document.createElement("div");
+    p.className="petal";
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(8+Math.random()*6)+"s";
+    document.body.appendChild(p);
 }
-}
-
-function explode(){
-let x=Math.random()*canvas.width;
-let y=Math.random()*canvas.height/2;
-for(let i=0;i<180;i++){
-parts.push({
-x,y,
-angle:Math.random()*2*Math.PI,
-speed:Math.random()*6+3,
-radius:2,
-life:140,
-color:`hsl(${Math.random()*360},100%,60%)`
-});
-}
-}
-
-function animate(){
-requestAnimationFrame(animate);
-ctx.fillStyle="rgba(0,0,0,0.2)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-parts.forEach((p,i)=>{
-p.x+=Math.cos(p.angle)*p.speed;
-p.y+=Math.sin(p.angle)*p.speed;
-p.life--;
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
-ctx.fillStyle=p.color;
-ctx.fill();
-if(p.life<=0)parts.splice(i,1);
-});
-}
-animate();
 </script>
+
+<div class="envelope" onclick="openLetter()">
+    <div class="flap"></div>
+    <div class="letter">
+        <div class="message">
+            🌷 Lời chúc 8/3 gửi đến những bông hoa rực rỡ của 12A1 🌷<br><br>
+            Cảm ơn các bạn đã làm thanh xuân này dịu dàng và đáng nhớ hơn.
+        </div>
+        <div class="light-scan"></div>
+        <img src="lop12a1.jpg" alt="12A1">
+    </div>
+</div>
+
+<audio id="openSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9f8d14d66c.mp3?filename=paper-rustle-1-16608.mp3"></audio>
+
+<script>
+function openLetter(){
+    document.querySelector(".envelope").classList.add("open");
+    document.body.style.background="linear-gradient(135deg,#ffd6e8,#f7c5d9,#fff0f5)";
+    document.getElementById("openSound").volume=0.2;
+    document.getElementById("openSound").play();
+
+    // ánh sáng quét
+    const scan=document.querySelector(".light-scan");
+    scan.style.animation="scanMove 2s forwards";
+}
+
+</script>
+
+<style>
+@keyframes scanMove{
+    from{left:-100%;}
+    to{left:150%;}
+}
+</style>
 
 </body>
 </html>
