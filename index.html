@@ -2,9 +2,9 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Thiệp 8/3 12A1</title>
+<title>Thiệp 8/3 12A1 - Luxury</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -13,81 +13,91 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:linear-gradient(135deg,#f9d5e5,#f6c1d9,#fbe4ef);
+  background:radial-gradient(circle at top,#fde6f0,#f9d4e6,#f3c3db);
   overflow:hidden;
   font-family:'Quicksand',sans-serif;
 }
 
 /* Envelope */
 .envelope{
-  width:420px;
-  height:300px;
+  width:520px;
+  height:360px;
   position:relative;
   cursor:pointer;
-  transition:0.6s;
+  transition:0.8s;
+  perspective:1000px;
 }
 
 .envelope-body{
   position:absolute;
   width:100%;
   height:100%;
-  background:linear-gradient(145deg,#f7c8dd,#f4b6d2);
-  border-radius:20px;
-  box-shadow:0 25px 40px rgba(0,0,0,0.15);
+  background:linear-gradient(145deg,#f8cfe0,#f3b8d2);
+  border-radius:25px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.2);
 }
 
 .flap{
   position:absolute;
   width:100%;
   height:100%;
-  background:#f2a7c7;
-  clip-path:polygon(0 0,100% 0,50% 60%);
-  border-radius:20px;
+  background:linear-gradient(145deg,#f5b4d1,#ef9fc4);
+  clip-path:polygon(0 0,100% 0,50% 65%);
+  border-radius:25px;
   transform-origin:top;
-  transition:0.8s ease;
+  transition:1s ease;
+}
+
+/* Golden border */
+.envelope-body::after{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.6);
 }
 
 /* Card */
 .card{
   position:absolute;
-  width:360px;
-  height:460px;
-  background:white;
-  border-radius:25px;
-  top:40px;
-  left:30px;
-  padding:30px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.2);
-  transform:translateY(150px) scale(0.8);
+  width:440px;
+  height:520px;
+  background:linear-gradient(180deg,#ffffff,#fff6fa);
+  border-radius:30px;
+  top:60px;
+  left:40px;
+  padding:40px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.25);
+  transform:translateY(200px) scale(0.8);
   opacity:0;
-  transition:1s ease;
+  transition:1.2s ease;
   text-align:center;
+  overflow:hidden;
+}
+
+/* Decorative border inside */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:15px;
+  border-radius:20px;
+  border:2px solid #f3c3db;
 }
 
 .card h2{
   font-family:'Playfair Display',serif;
   color:#c46b8c;
+  font-size:28px;
 }
 
 .card p{
+  margin-top:20px;
+  font-size:19px;
   color:#6b4b59;
-  font-size:18px;
-  line-height:1.6;
+  line-height:1.8;
 }
 
-.card img{
-  width:100%;
-  border-radius:15px;
-  margin-top:15px;
-  animation:zoom 6s infinite alternate;
-}
-
-@keyframes zoom{
-  from{transform:scale(1);}
-  to{transform:scale(1.05);}
-}
-
-/* Shine effect */
+/* Shine sweep */
 .shine{
   position:absolute;
   top:0;
@@ -95,7 +105,7 @@ body{
   width:100%;
   height:100%;
   background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
-  animation:shineMove 5s infinite;
+  animation:shineMove 6s infinite;
 }
 
 @keyframes shineMove{
@@ -103,24 +113,30 @@ body{
   100%{left:100%;}
 }
 
-/* Open state */
-.envelope.open .flap{
-  transform:rotateX(180deg);
+/* Sparkles */
+.sparkle{
+  position:absolute;
+  width:4px;
+  height:4px;
+  background:white;
+  border-radius:50%;
+  opacity:0.7;
+  animation:twinkle 3s infinite alternate;
 }
 
-.envelope.open .card{
-  transform:translateY(-180px) scale(1);
-  opacity:1;
+@keyframes twinkle{
+  from{opacity:0.2;}
+  to{opacity:0.8;}
 }
 
 /* Petals */
 .petal{
   position:absolute;
-  width:12px;
-  height:12px;
-  background:#f7a8c4;
+  width:10px;
+  height:10px;
+  background:#f6a9c8;
   border-radius:50%;
-  opacity:0.7;
+  opacity:0.5;
   animation:fall linear infinite;
 }
 
@@ -129,17 +145,28 @@ body{
   100%{transform:translateY(110vh) rotate(360deg);}
 }
 
+/* Open state */
+.envelope.open .flap{
+  transform:rotateX(180deg);
+}
+
+.envelope.open .card{
+  transform:translateY(-240px) scale(1);
+  opacity:1;
+}
+
+/* Music button */
 .music-btn{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#f4b6d2;
   border:none;
-  padding:10px 15px;
-  border-radius:20px;
+  padding:12px 18px;
+  border-radius:25px;
   cursor:pointer;
   font-weight:600;
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
 }
 </style>
 </head>
@@ -154,22 +181,27 @@ body{
       <h2>🌸 Lời chúc 8/3 gửi 12A1 🌸</h2>
       <p>
       Cảm ơn những bông hoa rực rỡ của lớp đã làm thanh xuân này
-      dịu dàng và đáng nhớ hơn rất nhiều 💗
+      trở nên dịu dàng, ấm áp và đầy ký ức đẹp.  
+      Chúc tất cả luôn tự tin, hạnh phúc và tỏa sáng theo cách riêng của mình ✨💗
       </p>
-      <!-- THAY LINK ẢNH LỚP Ở ĐÂY -->
-      <img src="https://picsum.photos/400/300" alt="Ảnh lớp">
+      <p>— 12A1 —</p>
   </div>
 </div>
 
-<button class="music-btn" onclick="toggleMusic()">🎹 Bật / Tắt nhạc</button>
+<button class="music-btn" onclick="toggleMusic()">🎹 Nhạc</button>
 
 <audio id="music" loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=romantic-piano-110997.mp3" type="audio/mp3">
 </audio>
 
+<audio id="openSound">
+<source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_0f3c2c2f3e.mp3?filename=paper-slide-1-8288.mp3" type="audio/mp3">
+</audio>
+
 <script>
 function openCard(){
   document.querySelector('.envelope').classList.toggle('open');
+  document.getElementById("openSound").play();
 }
 
 function toggleMusic(){
@@ -182,13 +214,22 @@ function toggleMusic(){
 }
 
 /* Create petals */
-for(let i=0;i<20;i++){
+for(let i=0;i<25;i++){
   let petal=document.createElement("div");
   petal.className="petal";
   petal.style.left=Math.random()*100+"vw";
-  petal.style.animationDuration=(5+Math.random()*5)+"s";
-  petal.style.opacity=Math.random();
+  petal.style.animationDuration=(6+Math.random()*6)+"s";
   document.body.appendChild(petal);
+}
+
+/* Create sparkles */
+for(let i=0;i<40;i++){
+  let sparkle=document.createElement("div");
+  sparkle.className="sparkle";
+  sparkle.style.left=Math.random()*100+"vw";
+  sparkle.style.top=Math.random()*100+"vh";
+  sparkle.style.animationDuration=(2+Math.random()*3)+"s";
+  document.body.appendChild(sparkle);
 }
 </script>
 
