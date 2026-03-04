@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chúc Mừng 8/3 💐</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    background: radial-gradient(circle at top,#ffd6e7,#ff9a9e,#fad0c4);
+}
+
+/* Thiệp */
+.card{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.5);
+    width:350px;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
+    text-align:center;
+    opacity:0;
+    animation: appear 3s ease forwards;
+}
+
+@keyframes appear{
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
+    }
+}
+
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:50px;
+    color:#ff4da6;
+    margin:0;
+}
+
+p{
+    font-size:16px;
+    color:#444;
+    margin-top:20px;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:25px;
+    background:#ff4da6;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff1493;
+    transform:scale(1.1);
+}
+
+/* Hoa bay */
+.flower{
+    position:absolute;
+    font-size:25px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh);
+    }
+}
+
+/* Trái tim */
+.heart{
+    position:absolute;
+    color:red;
+    font-size:20px;
+    animation: floatUp 3s linear forwards;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-200px);
+        opacity:0;
+    }
+}
+
+/* Pháo hoa */
+.firework{
+    position:absolute;
+    width:5px;
+    height:5px;
+    background:gold;
+    border-radius:50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode{
+    to{
+        transform:scale(15);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Chào Mừng 8/3</h1>
+    <p>
+        Nhân ngày 8/3 xin gửi tới tất cả những người phụ nữ lời chúc tốt đẹp nhất 💖  
+        Chúc luôn vui vẻ, xinh đẹp và hạnh phúc 🌸
+    </p>
+    <button onclick="celebrate()">Nhấn để nhận điều bất ngờ 🎁</button>
+</div>
+
+<!-- Nhạc nền nhẹ nhàng -->
+<audio id="music" autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2b9a58e9c5.mp3?filename=romantic-love-ambient-11092.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* Hoa rơi */
+function createFlower(){
+    const flower=document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML="🌸";
+    flower.style.left=Math.random()*window.innerWidth+"px";
+    flower.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(flower);
+
+    setTimeout(()=>flower.remove(),6000);
+}
+setInterval(createFlower,300);
+
+/* Trái tim khi click */
+document.body.addEventListener("click",function(e){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=e.clientX+"px";
+    heart.style.top=e.clientY+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),3000);
+});
+
+/* Pháo hoa */
+function celebrate(){
+    for(let i=0;i<20;i++){
+        const firework=document.createElement("div");
+        firework.classList.add("firework");
+        firework.style.left=Math.random()*window.innerWidth+"px";
+        firework.style.top=Math.random()*window.innerHeight+"px";
+        document.body.appendChild(firework);
+        setTimeout(()=>firework.remove(),1000);
+    }
+    alert("Chúc bạn có một ngày 8/3 thật rực rỡ 💐✨");
+}
+
+</script>
+
+</body>
+</html>
