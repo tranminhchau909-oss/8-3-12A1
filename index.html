@@ -1,27 +1,73 @@
-<audio id="bgMusic" loop src="./style/nhac.mp3"></audio>
-<audio id="popSound" src="./style/pop.mp3"></audio>
-<div class="night"></div>
-
-<div class="menu-container">
-    <div class="menu-options" id="menuOptions">
-        <div class="menu-option" id="messageBtn" title="Lời nhắn">
-            <i class="fa-regular fa-comment-dots"></i>
-        </div>
-
-        <div class="menu-option" id="giftBtn" title="Ảnh">
-            <i class="fa-solid fa-gift"></i>
-        </div>
-
-        <div class="menu-option" id="musicBtn" title="Nhạc">
-            <i class="fa-regular fa-circle-play"></i>
-        </div>
-
-        <div class="menu-option" id="settingsBtn" title="Icon">
-            <i class="fa-regular fa-pen-to-square"></i>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thư 8/3 💌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    <div class="envlope-wrapper">
+        <div id="envelope" class="close">
+            <div class="wax-seal"></div>
+            <div class="front flap"></div>
+            <div class="front pocket"></div>
+            <div class="letter">
+                <div class="letter-corner corner-tl"></div>
+                <div class="letter-corner corner-br"></div>
+                <div class="message">
+                    <div class="lyrics">
+                        <div class="lyric-page active" id="page1"><p>Gửi Các Bạn Nữ Lớp 12A1,...🌸 </p></div>
+                        <div class="lyric-page" id="page2"><p>Chúc các bạn luôn xinh đẹp và rạng rỡ,</p></div>
+                        <div class="lyric-page" id="page3"><p>Luôn tự tin và mạnh mẽ trên con đường của mình,</p></div>
+                        <div class="lyric-page" id="page4"><p>Mong rằng mỗi ngày đến lớp đều tràn đầy niềm vui,</p></div>
+                        <div class="lyric-page" id="page5"><p>Tiếng cười luôn vang khắp lớp học,</p></div>
+                        <div class="lyric-page" id="page6"><p>Thanh xuân của chúng ta thêm nhiều kỷ niệm đẹp ☀️,</p></div>
+                        <div class="lyric-page" id="page7"><p>Cảm ơn các bạn vì đã làm 12A1 trở nên đặc biệt hơn,.</p></div>
+                        <div class="lyric-page" id="page8"><p>Vì sự dễ thương và năng lượng tích cực, ✨,</p></div>
+                        <div class="lyric-page" id="page9"><p>Vì những khoảnh khắc vui vẻ cùng nhau,</p></div>
+                        <div class="lyric-page" id="page10"><p>Chúc các bạn luôn học tốt và đạt được ước mơ,</p></div>
+                        <div class="lyric-page" id="page11"><p>Luôn gặp nhiều may mắn trong cuộc sống ❤️.</p></div>
+                        <div class="lyric-page" id="page12"><p>Mỗi ngày đều là một ngày hạnh phúc,</p></div>
+                        <div class="lyric-page" id="page13"><p>Nụ cười luôn nở trên môi,</p></div>
+                        <div class="lyric-page" id="page14"><p>Tình bạn trong lớp ngày càng gắn bó,</p></div>
+                        <div class="lyric-page" id="page15"><p>12A1 luôn đoàn kết và tràn đầy sức sống,</p></div>
+                        <div class="lyric-page" id="page16"><p>Các bạn chính là những bông hoa đẹp nhất của lớp 💐.</p></div>
+                        <div class="lyric-page" id="page17"><p>Làm cho thanh xuân của chúng ta thêm rực rỡ,</p></div>
+                        <div class="lyric-page" id="page18"><p>Chúc các bạn luôn được yêu thương và trân trọng ☺️.</p></div>
+                        <div class="lyric-page" id="page19"><p>Luôn tỏa sáng theo cách riêng của mình,</p></div>
+                        <div class="lyric-page" id="page20"><p>Hãy luôn giữ sự lạc quan và nhiệt huyết,</p></div>
+                        <div class="lyric-page" id="page21"><p>Cùng nhau cố gắng cho chặng đường cuối cấp,</p></div>
+                        <div class="lyric-page" id="page22"><p>Tạo thật nhiều kỷ niệm đáng nhớ,</p></div>
+                        <div class="lyric-page" id="page23"><p>Chúc tất cả các bạn nữ 12A1 một ngày 8/3 thật vui vẻ và hạnh phúc nhé ❤️</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hearts">
+                <div class="heart a1"></div>
+                <div class="heart a2"></div>
+                <div class="heart a3"></div>
+            </div>
+            <div class="sparkles">
+                <div class="sparkle s1"></div>
+                <div class="sparkle s2"></div>
+                <div class="sparkle s3"></div>
+            </div>
         </div>
     </div>
-
-    <div class="menu-trigger" id="menuTrigger">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
+    <div class="controls">
+        <button id="openBtn">Mở</button>
+        <button id="resetBtn" style="display: none;">Đóng</button>
     </div>
-</div>
+    <audio id="sound" loop>
+      <source src="./style/Nhac.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./style/script.js"></script>
+</body>
+</html>
+
+
+
