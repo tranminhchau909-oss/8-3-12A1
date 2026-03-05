@@ -1,237 +1,27 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<title>Thiệp 8/3 12A1 - Luxury</title>
+<audio id="bgMusic" loop src="./style/nhac.mp3"></audio>
+<audio id="popSound" src="./style/pop.mp3"></audio>
+<div class="night"></div>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<div class="menu-container">
+    <div class="menu-options" id="menuOptions">
+        <div class="menu-option" id="messageBtn" title="Lời nhắn">
+            <i class="fa-regular fa-comment-dots"></i>
+        </div>
 
-<style>
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:radial-gradient(circle at top,#fde6f0,#f9d4e6,#f3c3db);
-  overflow:hidden;
-  font-family:'Quicksand',sans-serif;
-}
+        <div class="menu-option" id="giftBtn" title="Ảnh">
+            <i class="fa-solid fa-gift"></i>
+        </div>
 
-/* Envelope */
-.envelope{
-  width:520px;
-  height:360px;
-  position:relative;
-  cursor:pointer;
-  transition:0.8s;
-  perspective:1000px;
-}
+        <div class="menu-option" id="musicBtn" title="Nhạc">
+            <i class="fa-regular fa-circle-play"></i>
+        </div>
 
-.envelope-body{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(145deg,#f8cfe0,#f3b8d2);
-  border-radius:25px;
-  box-shadow:0 30px 60px rgba(0,0,0,0.2);
-}
+        <div class="menu-option" id="settingsBtn" title="Icon">
+            <i class="fa-regular fa-pen-to-square"></i>
+        </div>
+    </div>
 
-.flap{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(145deg,#f5b4d1,#ef9fc4);
-  clip-path:polygon(0 0,100% 0,50% 65%);
-  border-radius:25px;
-  transform-origin:top;
-  transition:1s ease;
-}
-
-/* Golden border */
-.envelope-body::after{
-  content:"";
-  position:absolute;
-  inset:6px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,0.6);
-}
-
-/* Card */
-.card{
-  position:absolute;
-  width:440px;
-  height:520px;
-  background:linear-gradient(180deg,#ffffff,#fff6fa);
-  border-radius:30px;
-  top:60px;
-  left:40px;
-  padding:40px;
-  box-shadow:0 25px 60px rgba(0,0,0,0.25);
-  transform:translateY(200px) scale(0.8);
-  opacity:0;
-  transition:1.2s ease;
-  text-align:center;
-  overflow:hidden;
-}
-
-/* Decorative border inside */
-.card::before{
-  content:"";
-  position:absolute;
-  inset:15px;
-  border-radius:20px;
-  border:2px solid #f3c3db;
-}
-
-.card h2{
-  font-family:'Playfair Display',serif;
-  color:#c46b8c;
-  font-size:28px;
-}
-
-.card p{
-  margin-top:20px;
-  font-size:19px;
-  color:#6b4b59;
-  line-height:1.8;
-}
-
-/* Shine sweep */
-.shine{
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
-  animation:shineMove 6s infinite;
-}
-
-@keyframes shineMove{
-  0%{left:-100%;}
-  100%{left:100%;}
-}
-
-/* Sparkles */
-.sparkle{
-  position:absolute;
-  width:4px;
-  height:4px;
-  background:white;
-  border-radius:50%;
-  opacity:0.7;
-  animation:twinkle 3s infinite alternate;
-}
-
-@keyframes twinkle{
-  from{opacity:0.2;}
-  to{opacity:0.8;}
-}
-
-/* Petals */
-.petal{
-  position:absolute;
-  width:10px;
-  height:10px;
-  background:#f6a9c8;
-  border-radius:50%;
-  opacity:0.5;
-  animation:fall linear infinite;
-}
-
-@keyframes fall{
-  0%{transform:translateY(-50px) rotate(0);}
-  100%{transform:translateY(110vh) rotate(360deg);}
-}
-
-/* Open state */
-.envelope.open .flap{
-  transform:rotateX(180deg);
-}
-
-.envelope.open .card{
-  transform:translateY(-240px) scale(1);
-  opacity:1;
-}
-
-/* Music button */
-.music-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#f4b6d2;
-  border:none;
-  padding:12px 18px;
-  border-radius:25px;
-  cursor:pointer;
-  font-weight:600;
-  box-shadow:0 10px 20px rgba(0,0,0,0.2);
-}
-</style>
-</head>
-
-<body>
-
-<div class="envelope" onclick="openCard()">
-  <div class="flap"></div>
-  <div class="envelope-body"></div>
-  <div class="card">
-      <div class="shine"></div>
-      <h2>🌸 Lời chúc 8/3 gửi 12A1 🌸</h2>
-      <p>
-      Cảm ơn những bông hoa rực rỡ của lớp đã làm thanh xuân này
-      trở nên dịu dàng, ấm áp và đầy ký ức đẹp.  
-      Chúc tất cả luôn tự tin, hạnh phúc và tỏa sáng theo cách riêng của mình ✨💗
-      </p>
-      <p>— 12A1 —</p>
-  </div>
+    <div class="menu-trigger" id="menuTrigger">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>
 </div>
-
-<button class="music-btn" onclick="toggleMusic()">🎹 Nhạc</button>
-
-<audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=romantic-piano-110997.mp3" type="audio/mp3">
-</audio>
-
-<audio id="openSound">
-<source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_0f3c2c2f3e.mp3?filename=paper-slide-1-8288.mp3" type="audio/mp3">
-</audio>
-
-<script>
-function openCard(){
-  document.querySelector('.envelope').classList.toggle('open');
-  document.getElementById("openSound").play();
-}
-
-function toggleMusic(){
-  const music = document.getElementById("music");
-  if(music.paused){
-    music.play();
-  }else{
-    music.pause();
-  }
-}
-
-/* Create petals */
-for(let i=0;i<25;i++){
-  let petal=document.createElement("div");
-  petal.className="petal";
-  petal.style.left=Math.random()*100+"vw";
-  petal.style.animationDuration=(6+Math.random()*6)+"s";
-  document.body.appendChild(petal);
-}
-
-/* Create sparkles */
-for(let i=0;i<40;i++){
-  let sparkle=document.createElement("div");
-  sparkle.className="sparkle";
-  sparkle.style.left=Math.random()*100+"vw";
-  sparkle.style.top=Math.random()*100+"vh";
-  sparkle.style.animationDuration=(2+Math.random()*3)+"s";
-  document.body.appendChild(sparkle);
-}
-</script>
-
-</body>
-</html>
